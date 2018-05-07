@@ -1,0 +1,46 @@
+{include file="public/header"}
+<form action="" method="post" class="form form-horizontal responsive" id="demoform">
+	<div class="row cl">
+		<label class="form-label col-xs-3">分类名：</label>
+		<div class="formControls col-xs-8">
+			<input type="text" class="input-text" placeholder="" value="{$category['name']}" name="name" id="name" autocomplete="off">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-3">排序号：</label>
+		<div class="formControls col-xs-8">
+			<input type="text" class="input-text" placeholder="不填默认为0" value="{$category['listorder']}" name="listorder" id="listorder" autocomplete="off">
+		</div>
+	</div>
+	<div class="row cl">
+		<div class="col-xs-8 col-xs-offset-3">
+			<input class="btn btn-primary" id="btn-submit" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+		</div>
+	</div>
+</form>
+
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript">
+	var res1 = parent.frameElement;//获取父页面的iframe
+
+  $('#btn-submit').click(function(){
+    var data = {
+      'name':$('#name').val(),
+      'listorder':$('#listorder').val()
+    };
+    $.post('{:url('category/edit',['id' => $category['id']])}',data,function(res){
+    	if(res.error)
+    	{
+    		layer.msg(res.msg,{icon:2,time:1000});
+    	}else{
+    		layer.msg(res.msg,{icon:1,time:1000},function(){
+	        	res1.contentWindow.location.reload(true)
+	        });
+    	}
+        
+    })
+    return false;
+  })
+ 
+</script>

@@ -1,0 +1,53 @@
+{include file="public/header"}
+<form  method="post" class="form form-horizontal responsive" >
+	<div class="row cl">
+		<label class="form-label col-xs-3">手机号：</label>
+		<div class="formControls col-xs-8">
+			<input type="text" class="input-text" placeholder="" value="{$admin.name}" disabled="disabled" name="name" id="name" autocomplete="off">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-3">新密码：</label>
+		<div class="formControls col-xs-8">
+			<input type="password" class="input-text" placeholder="" name="pwd" id="pwd" autocomplete="off">
+		</div>
+	</div>
+	<div class="row cl">
+		<label class="form-label col-xs-3">重复密码：</label>
+		<div class="formControls col-xs-8">
+			<input type="password" class="input-text" placeholder=""  id="pwd1" autocomplete="off">
+		</div>
+	</div>
+	<div class="row cl">
+		<div class="col-xs-8 col-xs-offset-3">
+			<button class="btn btn-primary" id="btn-submit"  >&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
+		</div>
+	</div>
+</form>
+
+<script type="text/javascript" src="__STATIC__/admin/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript">
+	var res1 = parent.frameElement;//获取父页面的iframe
+  	$('#btn-submit').click(function(){
+	    var data = {
+	      'name':$('#name').val(),
+	      'pwd':$('#pwd').val(),
+	      'pwd1':$('#pwd1').val(),
+
+	    };
+	    $.post('{:url('admin/edit',['id'=>$admin.id])}',data,function(res){
+	    	if(res.error)
+	    	{
+	    		layer.msg(res.msg, {icon:2,time:1000});
+	    	}else{
+	    		layer.msg(res.msg,{icon:1,time:1000},function(){
+
+		        	res1.contentWindow.parent.location.href = "{:url('account/index')}"
+		        });
+	    	}
+	    })
+	    return false;
+	})
+ 
+</script>

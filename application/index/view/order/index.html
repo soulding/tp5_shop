@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>订单结算</title>
+		<meta name="keywords" content="KEYWORDS..." />
+		<meta name="description" content="DESCRIPTION..." />
+		<meta name="author" content="DeathGhost" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name='apple-touch-fullscreen' content='yes'>
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="address=no">
+		<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="__STATIC__/index/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="__STATIC__/index/css/style.css" />
+		<script type="text/javascript" src="__STATIC__/index/js/jquery-1.11.1.min.js" ></script>
+		<script type="text/javascript" src="__STATIC__/index/js/iscroll.js" ></script>
+    	<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+		<script>
+			$(function() {
+				$("#btn-submit").click(function (){
+					if($('#tableid').val() == ''){
+						layer.msg('桌号还没填写哦~');
+						return 
+					}
+					$("#order-data").submit();
+				})
+				
+			})
+			
+		</script>
+	</head>
+
+	<body style="overflow-y: scroll;height: 100%;">
+		<div class="pay-order-header">
+			<ul>
+				<li>确认订单页</li>
+			</ul>
+		</div>
+
+		<div class="order-details-header clearfix">			
+			<h4 class="fl">就餐桌号</h4>
+			<form action="{:url('order/create')}" method="post" id="order-data">
+				<input type="text" name="tableid" id="tableid" placeholder="请输入桌号" class="fr ">
+				<input type="text" name="ordersn" value="{$ordersn}" style="display: none;">
+				<input type="text" name="goodsdata" value='{$goodsdata}' style="display: none;">
+				<input type="text" name="userid" value='{:decrypt(session('userid'))}' style="display: none;">
+			</form>
+		</div>
+		<table width="100%" class="bg-fff order-det-cont" style="margin: 0.2rem auto" >
+			<tbody>
+				<tr>
+					<td align="left" class="padl3" colspan="2"  style="color:#999">订单号</td>
+					<td align="right" width="30%" style="color:#999">{$ordersn}</td>
+				</tr>
+				<tr>
+					<td align="left" class="padl3" colspan="3" style="color:#999">餐品详情</td>
+				</tr>
+				{volist name="goodlist" id="vo"}
+				<tr>
+					<td align="left"  width="80%" class="padl3">{$vo.title}</td>
+					<td align="left" width="10%">×<em>{$vo.total}</em></td>	
+					<td align="right" width="10%">￥<em>{$vo.price}</em></td>	
+				</tr>
+				{/volist}
+				<!-- <tr>
+					<td align="left" colspan="1" class="padl3">餐盒费</td>
+					<td align="right" class="padr3">￥<em>1</em></td>
+				</tr> -->
+				<tr>
+					
+					<td align="left"  colspan="2" class="padl3">餐品总额</td>
+					<td align="right"  class="padr3">￥<em>{:number_format($allprice,2)}</em></td>
+				</tr>
+				<!-- <tr>
+									<td align="left" colspan="1" class="padl3">优惠券</td>
+									<td align="right" class="padr3 color-ec7602">
+										<a href="#" class="padding-right23 colore2bf1e">两张可用
+										<i href="#" class="isNext"></i>
+									</td>
+								</tr>
+								<tr>
+									<td align="left" class="padl3">订单</td>	
+									<td align="right" class="padr3 color-ec7602" style="font-size: 16px;">
+										<a href="#" class="padding-right23 colore2bf1e">积分抵￥1.00
+										<i href="#" class="isNext"></i>
+									</td>
+								</tr> -->				
+				<tr style="border-top: solid 8px #f1f1f1;">
+					<td align="left" colspan="2" class="padl3">应付金额:</td>
+					<td align="right" class="padr3">
+						<a href="#" class="colorf00">￥{:number_format($realprice,2)}</a>
+					</td>
+				</tr>			
+			</tbody>
+		</table>
+		
+		<div style="height:1rem;"></div>
+		<div class="order-set-paybutton">
+			<div class="paybutton-left fl"  onclick="history.back()" style="width: 40%;text-align: center;">取消</div>
+			<div class="paybutton-right fr" style="width: 60%;text-align: center;"><a id="btn-submit" href="#">确认订单</a></div>
+			<div class="clearfix"></div>
+		</div>
+	</body>
+	
+</html>

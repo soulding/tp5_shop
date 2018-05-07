@@ -1,0 +1,32 @@
+﻿{include file="public/header"}
+<div class="page-container">
+	<p class="f-20 text-success">欢迎使用移动点餐 <span class="f-14">v1.0</span>后台管理系统</p>
+	<p>本次登录IP：{:request()->ip()}</p>
+	<table class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+				<th colspan="7" scope="col">信息统计</th>
+			</tr>
+			<tr class="text-c">
+				<th>统计</th>
+				<th>分类</th>
+				<th>商品</th>
+				<th>订单</th>
+				<th>会员</th>
+				<th>管理员</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="text-c">
+				<td>总数</td>
+				<td>{$cate}</td>
+				<td>{$goods}</td>
+				<td>{$order}</td>
+				<td>{$user}</td>
+				<td>{$admin}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+</div>
+{include file="public/footer"}

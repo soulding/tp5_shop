@@ -1,0 +1,46 @@
+{include file="public/header"}
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 管理员列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	
+	
+	<div class="mt-20">
+	<table class="table table-border table-bordered table-hover table-bg table-sort">
+		<thead>
+			<tr class="text-c"><!-- 
+				<th ><input type="checkbox" name="" value=""></th> -->
+				<th >ID</th>
+				<th >管理员名</th>
+				<th >加入时间</th>
+				<th >操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			{volist name="admins" id="vo"}
+			<tr class="text-c"><!-- 
+				<td><input type="checkbox" value="1" name=""></td> -->
+				<td>{$vo.id}</td>
+				<td>{$vo.name}</td>
+				<td>{$vo.createtime|date="Y-m-d H:i:s",###}</td>
+				<td class="td-manage">
+
+					<a style="text-decoration:none" class="ml-5" onClick="change_password('修改密码','{:url('admin/edit',['id'=>$vo.id])}','10001','','250')" href="javascript:;" title="修改密码"><i class="Hui-iconfont">&#xe63f;</i></a></td>
+			</tr>
+			{/volist}
+		</tbody>
+	</table>
+	</div>
+</div>
+{include file="public/footer"}
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__STATIC__/admin/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+
+/*密码-修改*/
+function change_password(title,url,id,w,h){
+	layer_show(title,url,w,h);	
+}
+
+</script> 
+</body>
+</html>

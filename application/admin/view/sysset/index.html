@@ -1,0 +1,157 @@
+{include file="public/header"}
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+	<span class="c-gray en">&gt;</span>
+	系统管理
+	<span class="c-gray en">&gt;</span>
+	基本设置
+	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+</nav>
+<div class="page-container">
+	<form class="form form-horizontal" id="form-article-add">
+		<div id="tab-system" class="HuiTab">
+			<div class="tabBar cl">
+				<span>基本设置</span>
+				<!-- <span>安全设置</span>
+				<span>邮件设置</span>
+				<span>其他设置</span> -->
+			</div>
+			<div class="tabCon">
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">
+						<span class="c-red">*</span>
+						餐厅名称：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" id="title" placeholder="控制在25个字、50个字节以内" name="title" value="{$syssets[0]['title']}" class="input-text">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">
+						<span class="c-red">*</span>
+						关键词：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" id="keywords" placeholder="5个左右,8汉字以内,用英文,隔开" name="keywords" value="{$syssets[0]['keywords']}" class="input-text">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">
+						<span class="c-red">*</span>
+						描述：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" id="desc" placeholder="空制在80个汉字，160个字符以内" name="desc" value="{$syssets[0]['desc']}" class="input-text">
+					</div>
+				</div>
+				
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">统计代码：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<textarea class="textarea" id="js" name="js">{$syssets[0]['js']}</textarea>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="tabCon">
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">允许访问后台的IP列表：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<textarea class="textarea" name="" id=""></textarea>
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">后台登录失败最大次数：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" value="5" id="" name="" >
+					</div>
+				</div>
+			</div>
+			<div class="tabCon">
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">邮件发送模式：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text"  class="input-text" value="" id="" name="">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">SMTP服务器：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" id="" value="" class="input-text">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">SMTP 端口：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" value="25" id="" name="" >
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">邮箱帐号：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" class="input-text" value="5" id="emailName" name="emailName" >
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">邮箱密码：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="password" id="email-password" value="" class="input-text">
+					</div>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-4 col-sm-2">收件邮箱地址：</label>
+					<div class="formControls col-xs-8 col-sm-9">
+						<input type="text" id="email-address" value="" class="input-text">
+					</div>
+				</div>
+			</div>
+			<div class="tabCon">
+			</div> -->
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button id="btn-submit" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存</button>
+				<button onClick="layer_close();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+{include file="public/footer"} 
+<script type="text/javascript" src="__STATIC__/admin/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript">
+	var res1 = parent.frameElement;//获取父页面的iframe
+  	$('#btn-submit').click(function(){
+	    var data = {
+	    	'id':{$syssets[0]['id']},
+	      	'title':$('#title').val(),
+	      	'keywords':$('#keywords').val(),
+	      	'desc':$('#desc').val(),
+	      	'js':$('#js').val(),
+
+	    };
+	    $.post('{:url('sysset/edit')}',data,function(res){
+	    	if(res.error)
+	    	{
+	    		layer.msg(res.msg, {icon:2,time:1000});
+	    	}else{
+	    		layer.msg(res.msg,{icon:1,time:1000},function(){
+
+		        	//res1.contentWindow.parent.location.href = "{:url('account/index')}"
+		        });
+	    	}
+	    })
+	    return false;
+	})
+ 
+</script>
+<script type="text/javascript">
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	$("#tab-system").Huitab({
+		index:0
+	});
+});
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>

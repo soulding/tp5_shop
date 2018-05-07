@@ -1,0 +1,7 @@
+<div style="height:1.2rem;"></div>
+<nav style="z-index: 999">
+	<a href="/" class="homeIcon {if condition="request()->controller() == 'Index'"}addclasstruenav{/if}"><img src="__STATIC__/index/img/index1{if condition="request()->controller() == 'Index'"}-1{/if}.png">点餐</a>
+	<a href="{:url('index/order/orderList')}" class="categoryIcon {if condition="request()->controller() == 'Order'"}addclasstruenav{/if}"><img src="__STATIC__/index/img/index2{if condition="request()->controller() == 'Order'"}-1{/if}.png">订单</a>
+	<!-- <a href="service.html" class="cartIcon numberCount"><img src="__STATIC__/index/img/index3.png">服务</a> -->
+	<a href="{:url('index/my/index')}" class="userIcon {if condition="request()->controller() == 'My'"}addclasstruenav{/if}"><img src="__STATIC__/index/img/index4{if condition="request()->controller() == 'My'"}-1{/if}.png">我的</a>
+</nav>
